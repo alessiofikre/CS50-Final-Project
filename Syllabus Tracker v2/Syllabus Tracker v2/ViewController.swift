@@ -11,7 +11,6 @@ import UIKit
 class TableViewController: UITableViewController {
     var assignments: [Assignment] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

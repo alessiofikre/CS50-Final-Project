@@ -56,7 +56,7 @@ class AssignmentManager {
         }
     
     //Add creation function
-    func create(assignment: Assignment) {
+    func create(assignment: Assignment) -> Int {
         connect()
         
         var statement: OpaquePointer? = nil
@@ -82,7 +82,7 @@ class AssignmentManager {
         }
         
         sqlite3_finalize(statement)
-        return
+        return Int(sqlite3_last_insert_rowid(database))
         
     }
         

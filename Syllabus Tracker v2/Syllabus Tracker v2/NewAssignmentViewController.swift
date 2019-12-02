@@ -14,13 +14,15 @@ class NewAssignmentViewController: UIViewController, UITextFieldDelegate{
     @IBAction func updateAssignment(_ sender: Any) {
         print("This line is running")
         //New function to set user input
-         var userInput: Assignment?
+        var userInput: Assignment? = nil
                userInput?.className = classField.text!
                userInput?.assignmentName = assignmentField.text!
                userInput?.weight = weightField.text!
                userInput?.dueDate = dueDateField.text!
                userInput?.startDate = startDateField.text!
-        AssignmentManager.shared.create(assignment: userInput!)
+        print("\(String(describing: classField.text))")
+        
+        let _ = AssignmentManager.shared.create(assignment: userInput!)
         //TableViewController.reload()
 //        let _ = AssignmentManager.shared.update(assignment: assignment!)
 navigationController?.popViewController(animated: true)
