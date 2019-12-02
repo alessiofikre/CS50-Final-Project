@@ -36,7 +36,7 @@ class TableViewController: UITableViewController {
         ]
     
     func reload() {
-        assignments = AssignmentManager.shared.getAssignments()
+        //assignments = AssignmentManager.shared.create(assignment: UserInput)
         tableView.reloadData()
      }
     
@@ -50,7 +50,7 @@ class TableViewController: UITableViewController {
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainAssignmentCell", for: indexPath)
-        cell.textLabel?.text = assignments[indexPath.row].className + ":" + assignments[indexPath.row].assignmentName
+        cell.textLabel?.text = assignments[indexPath.row].className + ": " + assignments[indexPath.row].assignmentName
         cell.detailTextLabel?.text = assignments[indexPath.row].dueDate
         return cell
         }

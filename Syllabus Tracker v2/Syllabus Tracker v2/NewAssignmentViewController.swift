@@ -10,12 +10,17 @@ import Foundation
 import UIKit
 
 class NewAssignmentViewController: UIViewController, UITextFieldDelegate{
-    var assignments: [Assignment] = []
     
     @IBAction func updateAssignment(_ sender: Any) {
         print("This line is running")
-        var assignment: Assignment? = nil
-        let _ = AssignmentManager.shared.create()
+        //New function to set user input
+         var userInput: Assignment?
+               userInput?.className = classField.text!
+               userInput?.assignmentName = assignmentField.text!
+               userInput?.weight = weightField.text!
+               userInput?.dueDate = dueDateField.text!
+               userInput?.startDate = startDateField.text!
+        AssignmentManager.shared.create(assignment: userInput!)
         //TableViewController.reload()
 //        let _ = AssignmentManager.shared.update(assignment: assignment!)
 navigationController?.popViewController(animated: true)
@@ -108,8 +113,13 @@ navigationController?.popViewController(animated: true)
     //Action Will display all of the information that the user inputted
     @IBAction func enterTapped(_ sender: Any) {
         textView.text = "Class: \(classField.text!)\nAssignment: \(assignmentField.text!)\nWeight: \(weightField.text!)\nDue Date: \(dueDateField.text!)\nStart Date: \(startDateField.text!)"
+        
+        
     }
     
+    //function to set user input
+    
+
     //Added new when starting sql
     //var assignment: Assignment? = nil
     

@@ -56,17 +56,23 @@ class AssignmentManager {
         }
     
     //Add creation function
-    func create() -> Int {
+    func create(assignment: Assignment) {
         connect()
         
         var statement: OpaquePointer? = nil
         if sqlite3_prepare_v2(
             database,
-            "INSERT INTO assignments (className, assignmentName, weight, dueDate, startDate) VALUES ('History','Midterm','25','12/12/12 12:12','11/11/11 11:11')",
+            "INSERT INTO assignments (className, assignmentName, weight, dueDate, startDate) VALUES (?,?,?,?,?)",
             -1,
             &statement,
             nil
         ) == SQLITE_OK {
+            sqlite3_bind_text(statement, 1, NSString(string: assignment.className).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, NSString(string: assignment.assignmentName).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, NSString(string: assignment.weight).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 4, NSString(string: assignment.dueDate).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 5, NSString(string: assignment.startDate).utf8String, -1, nil)
+            sqlite3_bind_int(statement, 6, assignment.id)
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error inserting assignment")
             }
@@ -76,33 +82,35 @@ class AssignmentManager {
         }
         
         sqlite3_finalize(statement)
-        return Int(sqlite3_last_insert_rowid(database))
+        return
+        
     }
+        
+        //var result: [Assignment] = []
+        //if sqlite3_prepare_v2(database, "SELECT rowid, className, assignmentName, weight, dueDate, startDate FROM assignments", -1, &statement, nil) == SQLITE_OK {
+           // while sqlite3_step(statement) == SQLITE_ROW {
+                //result.append(Assignment(
+                   // id: sqlite3_column_int(statement, 0),
+                    //className: String(cString: sqlite3_column_text(statement, 1)),
+                    //assignmentName: String(cString: sqlite3_column_text(statement, 2)),
+                    //weight: String(cString: sqlite3_column_text(statement, 3)),
+                    //dueDate: String(cString: sqlite3_column_text(statement, 4)),
+                    //startDate: String(cString: sqlite3_column_text(statement, 5))
+               // ))
+            //}
+        //}
+            
+        //sqlite3_finalize(statement)
+        
+        //return Int(sqlite3_last_insert_rowid(database))
+        
+    //}
     
     //Getassignment function
-    func getAssignments() -> [Assignment] {
-    connect()
+    //func getAssignments() -> [Assignment] {
+    //connect()
     
-    var result: [Assignment] = []
-    var statement: OpaquePointer? = nil
-    if sqlite3_prepare_v2(database, "SELECT rowid, className, assignmentName, weight, dueDate, startDate FROM assignments", -1, &statement, nil) == SQLITE_OK {
-        while sqlite3_step(statement) == SQLITE_ROW {
-            result.append(Assignment(
-                id: sqlite3_column_int(statement, 0),
-                className: String(cString: sqlite3_column_text(statement, 1)),
-                assignmentName: String(cString: sqlite3_column_text(statement, 2)),
-                weight: String(cString: sqlite3_column_text(statement, 3)),
-                dueDate: String(cString: sqlite3_column_text(statement, 4)),
-                startDate: String(cString: sqlite3_column_text(statement, 5))
-            ))
-        }
-    }
-    sqlite3_finalize(statement)
-    return result
-    }
-    
-    
-    
+    //}
     
     
     //Update new assingments
