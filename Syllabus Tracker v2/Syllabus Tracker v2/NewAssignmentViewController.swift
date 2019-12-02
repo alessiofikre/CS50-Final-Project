@@ -10,15 +10,21 @@ import Foundation
 import UIKit
 
 class NewAssignmentViewController: UIViewController, UITextFieldDelegate{
-    //added new when starting sql
+    var assignments: [Assignment] = []
     
     @IBAction func updateAssignment(_ sender: Any) {
-        print("Error Here")
+        print("This line is running")
         var assignment: Assignment? = nil
         let _ = AssignmentManager.shared.create()
+        reload()
 //        let _ = AssignmentManager.shared.update(assignment: assignment!)
 navigationController?.popViewController(animated: true)
     }
+    
+    func reload() {
+           assignments = AssignmentManager.shared.getAssignments()
+           tableView.reloadData()
+       }
     
     //Wired up IBOutlets for the input fields
     @IBOutlet var classField: UITextField!
