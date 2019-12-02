@@ -31,11 +31,11 @@ class AssignmentManager {
             return
         }
             let databaseURL = try! FileManager.default.url(
-                for: .userDirectory,
+                for: .documentDirectory,
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-            ).appendingPathComponent("assignments.sqlite3")
+            ).appendingPathComponent("assignments.sqlite")
             
             if sqlite3_open(databaseURL.path, &database) != SQLITE_OK {
                 print("Error opening database")
@@ -62,7 +62,7 @@ class AssignmentManager {
         var statement: OpaquePointer? = nil
         if sqlite3_prepare_v2(
             database,
-            "INSERT INTO assignments (className, assignmentName, weight, dueDate, startDate) VALUES ( , , , , )",
+            "INSERT INTO assignments (className, assignmentName, weight, dueDate, startDate) VALUES ('History','Midterm','25','12/12/12 12:12','11/11/11 11:11')",
             -1,
             &statement,
             nil
@@ -88,7 +88,7 @@ class AssignmentManager {
         if sqlite3_prepare_v2(
             database,
             //Need to write this for assignments
-            "UPDATE notes SET className = ?, assignmentName = ?, weight = ?, dueDate = ?, startDate = ? WHERE rowid = ?",
+            "UPDATE assignments SET className = ?, assignmentName = ?, weight = ?, dueDate = ?, startDate = ? WHERE rowid = ?",
             -1,
             &statement,
             nil

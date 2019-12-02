@@ -12,13 +12,13 @@ import UIKit
 class NewAssignmentViewController: UIViewController, UITextFieldDelegate{
     //added new when starting sql
     
-    //@IBAction func updateAssignment(_ sender: Any) {
-      //  print("Error Here")
-        //var assignment: Assignment? = nil
-        //let _ = AssignmentManager.shared.create()
-        //let _ = AssignmentManager.shared.update(assignment: assignment!)
-//navigationController?.popViewController(animated: true)
-  //  }
+    @IBAction func updateAssignment(_ sender: Any) {
+        print("Error Here")
+        var assignment: Assignment? = nil
+        let _ = AssignmentManager.shared.create()
+//        let _ = AssignmentManager.shared.update(assignment: assignment!)
+navigationController?.popViewController(animated: true)
+    }
     
     //Wired up IBOutlets for the input fields
     @IBOutlet var classField: UITextField!
