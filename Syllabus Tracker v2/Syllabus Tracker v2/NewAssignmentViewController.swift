@@ -16,16 +16,11 @@ class NewAssignmentViewController: UIViewController, UITextFieldDelegate{
         print("This line is running")
         var assignment: Assignment? = nil
         let _ = AssignmentManager.shared.create()
-        reload()
+        //TableViewController.reload()
 //        let _ = AssignmentManager.shared.update(assignment: assignment!)
 navigationController?.popViewController(animated: true)
     }
-    
-    func reload() {
-           assignments = AssignmentManager.shared.getAssignments()
-           tableView.reloadData()
-       }
-    
+
     //Wired up IBOutlets for the input fields
     @IBOutlet var classField: UITextField!
     @IBOutlet var assignmentField: UITextField!

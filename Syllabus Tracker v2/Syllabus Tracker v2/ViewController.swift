@@ -9,9 +9,13 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
+    var assignments: [Assignment] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reload()
         // Do any additional setup after loading the view.
 
     let formatter = DateFormatter()
@@ -30,19 +34,24 @@ class TableViewController: UITableViewController {
         (classAssignment: "Final Exam", deadline: "12/12 9:00 AM"),
         (classAssignment: "Final Exam", deadline: "12/15 3:00 PM"),
         ]
-        
+    
+    func reload() {
+        assignments = AssignmentManager.shared.getAssignments()
+        tableView.reloadData()
+     }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
             return 1
         }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return list.count
+            return assignments.count
         }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainAssignmentCell", for: indexPath)
-        cell.textLabel?.text = classes[indexPath.row].className + " " + list[indexPath.row].classAssignment
-        cell.detailTextLabel?.text = list[indexPath.row].deadline
+        cell.textLabel?.text = assignments[indexPath.row].className + ":" + assignments[indexPath.row].assignmentName
+        cell.detailTextLabel?.text = assignments[indexPath.row].dueDate
         return cell
         }
     
