@@ -9,11 +9,11 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    var assignments: [Assignment] = []
+    var userInput: [Assignment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("hit viewdidload")
         reload()
         // Do any additional setup after loading the view.
 
@@ -35,7 +35,7 @@ class TableViewController: UITableViewController {
         ]
     
     func reload() {
-        //assignments = AssignmentManager.shared.create(assignment: UserInput)
+        print("hit reload func")
         tableView.reloadData()
      }
     
@@ -44,13 +44,13 @@ class TableViewController: UITableViewController {
         }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return assignments.count
+            return userInput.count
         }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainAssignmentCell", for: indexPath)
-        cell.textLabel?.text = assignments[indexPath.row].className + ": " + assignments[indexPath.row].assignmentName
-        cell.detailTextLabel?.text = assignments[indexPath.row].dueDate
+        cell.textLabel?.text = userInput[indexPath.row].className! + ": " + userInput[indexPath.row].assignmentName!
+        cell.detailTextLabel?.text = userInput[indexPath.row].dueDate
         return cell
         }
     

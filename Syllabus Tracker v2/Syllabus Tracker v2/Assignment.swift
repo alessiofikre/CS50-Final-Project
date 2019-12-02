@@ -11,11 +11,11 @@ import SQLite3
 
 struct Assignment {
     var id: Int32
-    var className: String
-    var assignmentName: String
-    var weight: String
-    var dueDate: String
-    var startDate: String
+    var className: String?
+    var assignmentName: String?
+    var weight: String?
+    var dueDate: String?
+    var startDate: String?
 }
 
 class AssignmentManager {
@@ -56,7 +56,7 @@ class AssignmentManager {
         }
     
     //Add creation function
-    func create(assignment: Assignment) -> Int {
+    func create(userInput: Assignment) -> Int {
         connect()
         
         var statement: OpaquePointer? = nil
@@ -67,12 +67,12 @@ class AssignmentManager {
             &statement,
             nil
         ) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, NSString(string: assignment.className).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 2, NSString(string: assignment.assignmentName).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 3, NSString(string: assignment.weight).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 4, NSString(string: assignment.dueDate).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 5, NSString(string: assignment.startDate).utf8String, -1, nil)
-            sqlite3_bind_int(statement, 6, assignment.id)
+            sqlite3_bind_text(statement, 1, NSString(string: userInput.className ?? "Empty").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, NSString(string: userInput.assignmentName ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, NSString(string: userInput.weight ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 4, NSString(string: userInput.dueDate ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 5, NSString(string: userInput.startDate ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_int(statement, 6, userInput.id)
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error inserting assignment")
             }
@@ -82,6 +82,7 @@ class AssignmentManager {
         }
         
         sqlite3_finalize(statement)
+        
         return Int(sqlite3_last_insert_rowid(database))
         
     }
@@ -126,11 +127,11 @@ class AssignmentManager {
             &statement,
             nil
         ) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, NSString(string: assignment.className).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 2, NSString(string: assignment.assignmentName).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 3, NSString(string: assignment.weight).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 4, NSString(string: assignment.dueDate).utf8String, -1, nil)
-            sqlite3_bind_text(statement, 5, NSString(string: assignment.startDate).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 1, NSString(string: assignment.className ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, NSString(string: assignment.assignmentName ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, NSString(string: assignment.weight ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 4, NSString(string: assignment.dueDate ?? "Nothing").utf8String, -1, nil)
+            sqlite3_bind_text(statement, 5, NSString(string: assignment.startDate ?? "Nothing").utf8String, -1, nil)
             sqlite3_bind_int(statement, 6, assignment.id)
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error saving assignment")

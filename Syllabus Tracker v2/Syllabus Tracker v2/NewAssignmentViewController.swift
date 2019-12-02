@@ -12,20 +12,25 @@ import UIKit
 class NewAssignmentViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func updateAssignment(_ sender: Any) {
+        var userInput = Assignment(id: 1, className: "hello" , assignmentName: "hello1", weight: "hello2" , dueDate: "hello3", startDate: "hello4")
         print("This line is running")
         //New function to set user input
-        var userInput: Assignment? = nil
-               userInput?.className = classField.text!
-               userInput?.assignmentName = assignmentField.text!
-               userInput?.weight = weightField.text!
-               userInput?.dueDate = dueDateField.text!
-               userInput?.startDate = startDateField.text!
-        print("\(String(describing: classField.text))")
+               userInput.className! = String(classField.text!)
+               userInput.assignmentName! = String(assignmentField.text!)
+               userInput.weight = String(weightField.text!)
+               userInput.dueDate = String(dueDateField.text!)
+               userInput.startDate = String(startDateField.text!)
+        print("\(String(classField.text!))")
+        print("\(String(userInput.className!))")
         
-        let _ = AssignmentManager.shared.create(assignment: userInput!)
+        let _ = AssignmentManager.shared.create(userInput: userInput)
         //TableViewController.reload()
-//        let _ = AssignmentManager.shared.update(assignment: assignment!)
+        //let _ = AssignmentManager.shared.update(assignment: assignment!)
+        print("beforepop")
 navigationController?.popViewController(animated: true)
+        print("afterpop")
+        
+        
     }
 
     //Wired up IBOutlets for the input fields
