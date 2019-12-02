@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8700C251239492DD008E370F /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8700C250239492DD008E370F /* Assignment.swift */; };
+		87AA923423931C5C00F6BFC5 /* NewAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AA923323931C5C00F6BFC5 /* NewAssignmentViewController.swift */; };
 		EDBB793B238F0F2B006A85DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB793A238F0F2B006A85DF /* AppDelegate.swift */; };
 		EDBB793D238F0F2B006A85DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB793C238F0F2B006A85DF /* SceneDelegate.swift */; };
 		EDBB793F238F0F2B006A85DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB793E238F0F2B006A85DF /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8700C250239492DD008E370F /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
+		87AA923323931C5C00F6BFC5 /* NewAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAssignmentViewController.swift; sourceTree = "<group>"; };
 		EDBB7937238F0F2B006A85DF /* Syllabus Tracker v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Syllabus Tracker v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBB793A238F0F2B006A85DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDBB793C238F0F2B006A85DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				EDBB793C238F0F2B006A85DF /* SceneDelegate.swift */,
 				EDBB793E238F0F2B006A85DF /* ViewController.swift */,
 				EDBB7940238F0F2B006A85DF /* Main.storyboard */,
+				87AA923323931C5C00F6BFC5 /* NewAssignmentViewController.swift */,
+				8700C250239492DD008E370F /* Assignment.swift */,
 				EDBB7943238F0F2D006A85DF /* Assets.xcassets */,
 				EDBB7945238F0F2D006A85DF /* LaunchScreen.storyboard */,
 				EDBB7948238F0F2D006A85DF /* Info.plist */,
@@ -140,6 +146,8 @@
 			files = (
 				EDBB793F238F0F2B006A85DF /* ViewController.swift in Sources */,
 				EDBB793B238F0F2B006A85DF /* AppDelegate.swift in Sources */,
+				87AA923423931C5C00F6BFC5 /* NewAssignmentViewController.swift in Sources */,
+				8700C251239492DD008E370F /* Assignment.swift in Sources */,
 				EDBB793D238F0F2B006A85DF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
