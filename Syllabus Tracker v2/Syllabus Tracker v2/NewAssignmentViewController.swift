@@ -27,9 +27,10 @@ class NewAssignmentViewController: UIViewController, UITextFieldDelegate{
         //TableViewController.reload()
         //let _ = AssignmentManager.shared.update(assignment: assignment!)
         print("beforepop")
-navigationController?.popViewController(animated: true)
-        print("afterpop")
         
+        navigationController?.popViewController(animated: true)
+        
+        print("afterpop")
         
     }
 
@@ -124,16 +125,7 @@ navigationController?.popViewController(animated: true)
         
     }
     
-    //function to set user input
     
-
-    //Added new when starting sql
-    //var assignment: Assignment? = nil
     
-    //override func viewWillAppear(_ animated: Bool) {
-        //super.viewWillAppear(animated)
-        
-        //AssignmentManager.shared.update(assignment: assignment!)
-    //}
 }
 

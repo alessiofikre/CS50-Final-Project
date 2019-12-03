@@ -48,6 +48,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Upcoming Assignments" id="CKw-n1-Pfp">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="O22-Ta-hDe">
+                            <connections>
+                                <action selector="refresh:" destination="23H-Dn-Xwq" id="gTo-IN-yu2"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Za2-8i-O9n">
                             <connections>
                                 <segue destination="D7q-zx-uEg" kind="push" id="dNb-Pb-dCo"/>
@@ -134,6 +139,11 @@
                                     <action selector="enterTapped:" destination="D7q-zx-uEg" eventType="touchUpInside" id="4xH-bu-bvU"/>
                                     <action selector="enterTapped:" destination="XZu-xM-CSb" eventType="touchUpInside" id="Apc-DC-t2p"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YME-6g-DdM">
+                                <rect key="frame" x="159" y="793" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

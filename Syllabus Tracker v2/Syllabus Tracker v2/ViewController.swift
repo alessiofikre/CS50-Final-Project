@@ -9,14 +9,18 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    var userInput: [Assignment] = []
+    var finalAssignment: [Assignment] = []
+    
+    @IBAction func refresh(_ sender: Any) {
+        reload()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("hit viewdidload")
         reload()
         // Do any additional setup after loading the view.
-
+        
     let formatter = DateFormatter()
     formatter.dateFormat = "MM/dd HH:mm"
         
@@ -36,6 +40,7 @@ class TableViewController: UITableViewController {
     
     func reload() {
         print("hit reload func")
+        finalAssignment = AssignmentManager.shared.getAssignments()
         tableView.reloadData()
      }
     
@@ -44,13 +49,13 @@ class TableViewController: UITableViewController {
         }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return userInput.count
+            return finalAssignment.count
         }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainAssignmentCell", for: indexPath)
-        cell.textLabel?.text = userInput[indexPath.row].className! + ": " + userInput[indexPath.row].assignmentName!
-        cell.detailTextLabel?.text = userInput[indexPath.row].dueDate
+        cell.textLabel?.text = finalAssignment[indexPath.row].className! + ": " + (finalAssignment[indexPath.row].assignmentName ?? "N/A")
+        cell.detailTextLabel?.text = finalAssignment[indexPath.row].dueDate ?? "N/A"
         return cell
         }
     

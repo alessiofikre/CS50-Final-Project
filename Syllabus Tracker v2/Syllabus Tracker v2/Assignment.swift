@@ -86,33 +86,24 @@ class AssignmentManager {
         return Int(sqlite3_last_insert_rowid(database))
         
     }
-        
-        //var result: [Assignment] = []
-        //if sqlite3_prepare_v2(database, "SELECT rowid, className, assignmentName, weight, dueDate, startDate FROM assignments", -1, &statement, nil) == SQLITE_OK {
-           // while sqlite3_step(statement) == SQLITE_ROW {
-                //result.append(Assignment(
-                   // id: sqlite3_column_int(statement, 0),
-                    //className: String(cString: sqlite3_column_text(statement, 1)),
-                    //assignmentName: String(cString: sqlite3_column_text(statement, 2)),
-                    //weight: String(cString: sqlite3_column_text(statement, 3)),
-                    //dueDate: String(cString: sqlite3_column_text(statement, 4)),
-                    //startDate: String(cString: sqlite3_column_text(statement, 5))
-               // ))
-            //}
-        //}
-            
-        //sqlite3_finalize(statement)
-        
-        //return Int(sqlite3_last_insert_rowid(database))
-        
-    //}
     
-    //Getassignment function
-    //func getAssignments() -> [Assignment] {
-    //connect()
-    
-    //}
-    
+    func getAssignments() -> [Assignment] {
+        connect()
+        
+        var result: [Assignment] = []
+        var statement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(database, "SELECT rowid, className, assignmentName, weight, dueDate, startDate FROM assignments", -1, &statement, nil) == SQLITE_OK {
+            while sqlite3_step(statement) == SQLITE_ROW {
+                result.append(Assignment(
+                    id: sqlite3_column_int(statement, 0),
+                    className: String(cString: sqlite3_column_text(statement, 1))
+                ))
+            }
+        }
+        
+        sqlite3_finalize(statement)
+        return result
+    }
     
     //Update new assingments
     func update(assignment: Assignment){
@@ -143,6 +134,28 @@ class AssignmentManager {
         
         sqlite3_finalize(statement)
     }
+    
+    func deleteAssignment(assignment: Assignment) {
+    connect()
+        
+        var statement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(
+            database,
+            "DELETE FROM assignments WHERE rowid = ?",
+            -1,
+            &statement,
+            nil
+        ) == SQLITE_OK {
+            sqlite3_bind_int(statement, 1, assignment.id)
+            if sqlite3_step(statement) != SQLITE_DONE {
+                print("Error deleting assignment")
+            }
+        }
+        
+        sqlite3_finalize(statement)
+        
+    }
+    
     
 }
     
