@@ -134,6 +134,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qw-rN-WyC" customClass="NewAssignmentViewController">
                                 <rect key="frame" x="19.816906565806676" y="701" width="373.99999999999977" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Add New Assignment!"/>
                                 <connections>
                                     <action selector="enterTapped:" destination="D7q-zx-uEg" eventType="touchUpInside" id="4xH-bu-bvU"/>
